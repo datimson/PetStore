@@ -34,7 +34,8 @@ namespace PetStore.Services
 
             var sortedPets = pets
                 .OrderByDescending(x => x.Name)
-                .GroupBy(x => x.Category.Name)
+                .ThenBy(x => x.Id)
+                .GroupBy(x => x.Category?.Name ?? "Other")
                 .OrderByDescending(x => x.Key)
                 .ToDictionary(x => x.Key, x => x.ToList());
 

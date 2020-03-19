@@ -61,16 +61,37 @@ namespace PetStore.Tests
                 var categoryA = new Category { Id = 1, Name = "Category A" };
                 var categoryB = new Category { Id = 2, Name = "Category B" };
 
-                var pet1 = new Pet { Id = 1, Name = "Pet 1", Status = PetStatus.Available, Category = categoryA };
-                var pet2 = new Pet { Id = 2, Name = "Pet 2", Status = PetStatus.Available, Category = categoryA };
+                var pet1 = new Pet { Id = 1, Name = "Pet Same Name", Status = PetStatus.Available, Category = categoryA };
+                var pet2 = new Pet { Id = 2, Name = "Pet Same Name", Status = PetStatus.Available, Category = categoryA };
                 var pet3 = new Pet { Id = 3, Name = "Pet 3", Status = PetStatus.Available, Category = categoryB };
-                var pets = new List<Pet> { pet1, pet2, pet3 };
+                var pet4 = new Pet { Id = 4, Name = "Pet 4", Status = PetStatus.Available, Category = categoryB };
+                var pet5 = new Pet { Id = 5, Name = "Pet 5", Status = PetStatus.Available, Category = categoryB };
+                var pets = new List<Pet> { pet1, pet2, pet3, pet4, pet5 };
 
-                // categories are sorted by name descending and pets by name descending
+                // categories are sorted by name descending and pets by name descending then by Id
                 var expected = new Dictionary<string, List<Pet>>
                 {
-                    { categoryB.Name, new List<Pet> { pet3 } },
-                    { categoryA.Name, new List<Pet> { pet2, pet1 } }
+                    { categoryB.Name, new List<Pet> { pet5, pet4, pet3 } },
+                    { categoryA.Name, new List<Pet> { pet1, pet2 } }
+                };
+
+                var mockPetstoreClient = new Mock<IPetstoreClient>();
+                var service = new PetStoreService(mockPetstoreClient.Object);
+                var actual = service.SortPetsByCategoryAndName(pets);
+
+                Assert.Equal(expected, actual);
+            }
+
+            [Fact]
+            public void WhenNullCategory_ThenCreateOther()
+            {
+                var otherCategory = "Other";
+                var pet1 = new Pet { Id = 1, Name = "Pet 1", Status = PetStatus.Available };
+                var pets = new List<Pet> { pet1 };
+
+                var expected = new Dictionary<string, List<Pet>>
+                {
+                    { otherCategory, new List<Pet> { pet1 } },
                 };
 
                 var mockPetstoreClient = new Mock<IPetstoreClient>();

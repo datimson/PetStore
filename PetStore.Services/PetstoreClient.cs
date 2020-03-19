@@ -278,6 +278,7 @@ namespace PetStore
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.2.5.0 (NJsonSchema v10.1.7.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class PetstoreClient : IPetstoreClient
     {
+        private string _baseUrl = "https://petstore.swagger.io/v2";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
@@ -292,6 +293,12 @@ namespace PetStore
             var settings = new Newtonsoft.Json.JsonSerializerSettings();
             UpdateJsonSerializerSettings(settings);
             return settings;
+        }
+    
+        public string BaseUrl 
+        {
+            get { return _baseUrl; }
+            set { _baseUrl = value; }
         }
     
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
@@ -321,7 +328,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("petId");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("pet/{petId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pet/{petId}");
             urlBuilder_.Replace("{petId}", System.Uri.EscapeDataString(ConvertToString(petId, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -410,7 +417,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("petId");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("pet/{petId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pet/{petId}");
             urlBuilder_.Replace("{petId}", System.Uri.EscapeDataString(ConvertToString(petId, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -486,7 +493,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("petId");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("pet/{petId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pet/{petId}");
             urlBuilder_.Replace("{petId}", System.Uri.EscapeDataString(ConvertToString(petId, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -570,7 +577,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("petId");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("pet/{petId}/uploadImage");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pet/{petId}/uploadImage");
             urlBuilder_.Replace("{petId}", System.Uri.EscapeDataString(ConvertToString(petId, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -656,7 +663,7 @@ namespace PetStore
         public async System.Threading.Tasks.Task AddPetAsync(Pet body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("pet");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pet");
     
             var client_ = _httpClient;
             try
@@ -725,7 +732,7 @@ namespace PetStore
         public async System.Threading.Tasks.Task UpdatePetAsync(Pet body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("pet");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pet");
     
             var client_ = _httpClient;
             try
@@ -811,7 +818,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("status");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("pet/findByStatus?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pet/findByStatus?");
             foreach (var item_ in status) { urlBuilder_.Append(System.Uri.EscapeDataString("status") + "=").Append(System.Uri.EscapeDataString(ConvertToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
             urlBuilder_.Length--;
     
@@ -895,7 +902,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("tags");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("pet/findByTags?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pet/findByTags?");
             foreach (var item_ in tags) { urlBuilder_.Append(System.Uri.EscapeDataString("tags") + "=").Append(System.Uri.EscapeDataString(ConvertToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
             urlBuilder_.Length--;
     
@@ -972,7 +979,7 @@ namespace PetStore
         public async System.Threading.Tasks.Task<System.Collections.Generic.IDictionary<string, int>> GetInventoryAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("store/inventory");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/store/inventory");
     
             var client_ = _httpClient;
             try
@@ -1046,7 +1053,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("orderId");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("store/order/{orderId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/store/order/{orderId}");
             urlBuilder_.Replace("{orderId}", System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -1131,7 +1138,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("orderId");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("store/order/{orderId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/store/order/{orderId}");
             urlBuilder_.Replace("{orderId}", System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -1206,7 +1213,7 @@ namespace PetStore
         public async System.Threading.Tasks.Task<Order> PlaceOrderAsync(Order body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("store/order");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/store/order");
     
             var client_ = _httpClient;
             try
@@ -1289,7 +1296,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("username");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("user/{username}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/user/{username}");
             urlBuilder_.Replace("{username}", System.Uri.EscapeDataString(ConvertToString(username, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -1376,7 +1383,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("username");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("user/{username}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/user/{username}");
             urlBuilder_.Replace("{username}", System.Uri.EscapeDataString(ConvertToString(username, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -1455,7 +1462,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("username");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("user/{username}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/user/{username}");
             urlBuilder_.Replace("{username}", System.Uri.EscapeDataString(ConvertToString(username, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -1538,7 +1545,7 @@ namespace PetStore
                 throw new System.ArgumentNullException("password");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("user/login?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/user/login?");
             urlBuilder_.Append(System.Uri.EscapeDataString("username") + "=").Append(System.Uri.EscapeDataString(ConvertToString(username, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append(System.Uri.EscapeDataString("password") + "=").Append(System.Uri.EscapeDataString(ConvertToString(password, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
@@ -1616,7 +1623,7 @@ namespace PetStore
         public async System.Threading.Tasks.Task LogoutUserAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("user/logout");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/user/logout");
     
             var client_ = _httpClient;
             try
@@ -1673,7 +1680,7 @@ namespace PetStore
         public async System.Threading.Tasks.Task CreateUserAsync(User body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("user");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/user");
     
             var client_ = _httpClient;
             try
@@ -1733,7 +1740,7 @@ namespace PetStore
         public async System.Threading.Tasks.Task CreateUsersWithArrayInputAsync(System.Collections.Generic.IEnumerable<User> body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("user/createWithArray");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/user/createWithArray");
     
             var client_ = _httpClient;
             try
@@ -1793,7 +1800,7 @@ namespace PetStore
         public async System.Threading.Tasks.Task CreateUsersWithListInputAsync(System.Collections.Generic.IEnumerable<User> body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("user/createWithList");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/user/createWithList");
     
             var client_ = _httpClient;
             try
